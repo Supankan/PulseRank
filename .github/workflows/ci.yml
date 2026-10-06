@@ -1,0 +1,39 @@
+name: PulseRank CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+        cache: "pip"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-asyncio flake8 httpx
+
+    - name: Python Syntax & Lint Check
+      run: |
+        python -m compileall pulserank/
+        flake8 pulserank --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    - name: Run Pytest Test Suite
+      run: |
+        pytest -v tests/
+
+    - name: Verify Quick Pipeline Orchestration
+      run: |
+        python -m pulserank.scripts.run_pipeline --mode quick

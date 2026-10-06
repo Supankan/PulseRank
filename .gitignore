@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.venv/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Data and Models
+data/
+artifacts/
+backup_fixture/
+*.faiss
+*.index
+*.npy
+*.pkl
+*.joblib
+*.parquet
+*.zip
+*.tar.gz
+*.tsv
+*.vec
+
+# MLflow
+mlruns/
+.mlflow/
+
+# Node / Vite
+web/node_modules/
+web/dist/
+*.local
+
+# Environment & Logs
+.env
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
